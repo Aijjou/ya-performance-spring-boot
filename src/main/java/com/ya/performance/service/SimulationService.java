@@ -1,9 +1,20 @@
 package com.ya.performance.service;
 
-import org.springframework.stereotype.Service;
+import java.util.List;
 
-@Service
-public class SimulationService {
+import com.ya.performance.entities.Simulation;
+
+public interface SimulationService {
 
 	
+	
+	public Simulation create(Simulation simulation);
+	public Simulation findById(Integer idSimulation);
+	public void deleteById(Integer idSimulation);
+	public List<Simulation> findAllSimulation();
+	
+	
+	
 }
+
+

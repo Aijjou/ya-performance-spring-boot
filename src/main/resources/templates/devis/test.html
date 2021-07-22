@@ -1,0 +1,368 @@
+<html xmlns:v="urn:schemas-microsoft-com:vml"
+	xmlns:o="urn:schemas-microsoft-com:office:office"
+	xmlns:w="urn:schemas-microsoft-com:office:word"
+	xmlns:m="http://schemas.microsoft.com/office/2004/12/omml"
+	xmlns="http://www.w3.org/TR/REC-html40"
+	xmlns:th="http://www.thymeleaf.org">
+
+<head>
+<meta name="viewport" content="width=device-width"></meta>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8"></meta>
+<meta charset="UTF-8" xmlns:th="http://www.thymeleaf.org"></meta>
+
+<link rel="stylesheet"
+	href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+	integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh"
+	crossorigin="anonymous"></link>
+<script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+<script
+	src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"
+	integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6"
+	crossorigin="anonymous"></script>
+
+<script
+	src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
+	integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
+	crossorigin="anonymous"></script>
+<link href="../../css/devis.css" rel="stylesheet"></link>
+
+<title>Ya_Performance Devis</title>
+
+
+</head>
+<body>
+	<page size="A4" layout="paysage"
+		style='width: 21cm;
+	height: 29.7cm; background: white;'>
+
+	<div class="WordSection1">
+		<p>
+			<span
+				style='mso-ignore: vglayout; position: relative; z-index: 251656704'><span
+				style='position: absolute; left: 348px; top: 20px; width: 304px; height: 64px; border:solid 3px; padding:10px; font-size:25px;' class="text-center">DEVIS</span></span>
+
+			<b><span
+				style='font-size: 14.0pt; mso-bidi-font-size: 12.0pt; font-family: "Arial", sans-serif; mso-fareast-language: FR; mso-no-proof: yes'
+				th:text="${devis.societe.nom}"> </span></b>
+		</p>
+
+		<div>
+			<span style='font-size: 12.0pt; font-family: "Arial", sans-serif'><span
+				th:text="${devis.societe.numeroRue}"></span> <span
+				th:text="${devis.societe.nomRue}"></span> <o:p></o:p> </span>
+		</div>
+
+		<div>
+			<span style='font-size: 12.0pt; font-family: "Arial", sans-serif'><span
+				th:text="${devis.societe.codePostal}"></span> <span
+				th:text="${devis.societe.ville}"></span> <o:p></o:p> </span>
+		</div>
+
+		<div>
+			<span style='font-size: 12.0pt; font-family: "Arial", sans-serif'><span
+				th:text="${devis.societe.telephone}"></span> / <span
+				th:text="${devis.societe.fax}"></span> <o:p></o:p> </span>
+		</div>
+
+		<div>
+			<span style='font-size: 12.0pt; font-family: "Arial", sans-serif'><span
+				th:text="${devis.societe.mail}"></span> <o:p></o:p></span>
+		</div>
+
+		<p class="MsoNoSpacing">
+			<span style='font-size: 5.0pt; font-family: "Arial", sans-serif'><o:p></o:p></span>
+		</p>
+
+		<span class="row infos">
+
+			<div class="card p-2 bg-info w-25" style='padding-left: 20px; padding-right: 20px; padding-top: 10px; padding-bottom: 10px;'>
+				<div class="row">
+					<span class="font-weight-bold px-0 ">Reference :</span> <span
+						class="px-0 text-center text-white" th:text="${devis.reference}"></span>
+				</div>
+				<div class="row">
+					<span class="font-weight-bold px-0">Date :</span> <span
+						class="px-0 text-center text-white"
+						th:text="${#dates.format(devis.dateCreation, 'dd-MM-yyyy')}"></span>
+				</div>
+				<div class="row">
+					<span class="font-weight-bold px-0">N° Client :</span> <span
+						class="px-0 text-center text-white"
+						th:text="${devis.numeroclient}"></span>
+				</div>
+			</div>
+			<div class="card p-2 bg-secondary w-50"
+				style='position: absolute; left: 350px; top: 175px; padding:10px; height: 100px;'
+				align="center">
+				<div class="row">
+					<span class="font-weight-bold px-0 text-white"
+						th:text="${devis.prospect.prosCivilite}"></span> <span
+						class="font-weight-bold px-0 text-white "
+						th:text="${devis.prospect.prosNom}"></span> <span
+						class="font-weight-bold px-0 text-white"
+						th:text="${devis.prospect.prosPrenom}"></span>
+				</div>
+				<div class="row justify-content-center p-0 mx-0">
+					<span class="font-weight-bold px-0 text-white"
+						th:text="${devis.simulation.adresse.adrNum}"></span> <span
+						class="font-weight-bold px-0 text-white"
+						th:text="${devis.simulation.adresse.adrVoie}"></span>
+
+				</div>
+				<div class="row justify-content-center p-0 mx-0">
+					<span class="font-weight-bold px-0 text-white "
+						th:text="${devis.simulation.adresse.adrCp}"></span> <span
+						class="font-weight-bold px-0 text-white "
+						th:text="${devis.simulation.adresse.adrVille}"></span>
+				</div>
+			</div>
+		</span> <br></br>
+		<p class="d-flex flex-row justify-content-start p-2">
+			<span style='font-size: 12.0pt; font-family: "Arial", sans-serif'
+				class="text-start">Intitulé: </span><span
+				th:text="${devis.intitule}"></span>
+		</p>
+		<table class="MsoNormalTable" border="0" cellspacing="0"
+			cellpadding="0" width="0"
+			style='width: 486.0pt; margin-left: 5.4pt; border-collapse: collapse; mso-padding-alt: 0cm 5.4pt 0cm 5.4pt'>
+			<tr style='height: 22.7pt'>
+				<td width="84"
+					style='width: 63.0pt; border: solid silver 1.0pt; border-right: none; mso-border-top-alt: solid silver .5pt; mso-border-left-alt: solid silver .5pt; mso-border-bottom-alt: solid silver .5pt; background: #CCFFFF; padding: 0cm 5.4pt 0cm 5.4pt; height: 22.7pt'>
+					<p class="MsoNoSpacing" style='layout-grid-mode: char'>
+						<b><span
+							style='mso-bidi-font-size: 12.0pt; font-family: "Arial", sans-serif'>Quantité</span></b>
+					</p>
+				</td>
+				<td width="324"
+					style='width: 243.0pt; border: solid silver 1.0pt; border-right: none; mso-border-top-alt: solid silver .5pt; mso-border-left-alt: solid silver .5pt; mso-border-bottom-alt: solid silver .5pt; background: #CCFFFF; padding: 0cm 5.4pt 0cm 5.4pt; height: 22.7pt'>
+					<p class="MsoNoSpacing" align="center"
+						style='text-align: center; layout-grid-mode: char'>
+						<b><span
+							style='mso-bidi-font-size: 12.0pt; font-family: "Arial", sans-serif; mso-bidi-font-family: Calibri'>Désignation<o:p></o:p></span></b>
+					</p>
+				</td>
+				<td width="132"
+					style='width: 99.0pt; border: solid silver 1.0pt; border-right: none; mso-border-top-alt: solid silver .5pt; mso-border-left-alt: solid silver .5pt; mso-border-bottom-alt: solid silver .5pt; background: #CCFFFF; padding: 0cm 5.4pt 0cm 5.4pt; height: 22.7pt'>
+					<p class="MsoNoSpacing" style='layout-grid-mode: char'>
+						<b><span
+							style='mso-bidi-font-size: 12.0pt; font-family: "Arial", sans-serif; mso-bidi-font-family: Calibri'>Prix
+								unitaire HT<o:p></o:p>
+						</span></b>
+					</p>
+				</td>
+				<td width="108"
+					style='width: 81.0pt; border: solid silver 1.0pt; mso-border-alt: solid silver .5pt; background: #CCFFFF; padding: 0cm 5.4pt 0cm 5.4pt; height: 22.7pt'>
+					<p class="MsoNoSpacing" style='layout-grid-mode: char'>
+						<b><span
+							style='mso-bidi-font-size: 12.0pt; font-family: "Arial", sans-serif; mso-bidi-font-family: Calibri'>Prix
+								total HT<o:p></o:p>
+						</span></b>
+					</p>
+				</td>
+			</tr>
+			<tr style='height: 1.0cm'>
+				<td width="84"
+					style='width: 63.0pt; border-top: none; border-left: solid silver 1.0pt; border-bottom: solid silver 1.0pt; border-right: none; mso-border-top-alt: solid silver .5pt; mso-border-top-alt: solid silver .5pt; mso-border-left-alt: solid silver .5pt; mso-border-bottom-alt: solid silver .5pt; padding: 0cm 5.4pt 0cm 5.4pt; height: 1.0cm'>
+					<p class="MsoNoSpacing" align="center" style='text-align: center'>
+						<span style='font-size: 12.0pt'><span class="text-dark"
+							th:text="${devis.quantite}"></span></span>
+					</p>
+				</td>
+				<td width="324"
+					style='width: 243.0pt; border-top: none; border-left: solid silver 1.0pt; border-bottom: solid silver 1.0pt; border-right: none; mso-border-top-alt: solid silver .5pt; mso-border-top-alt: solid silver .5pt; mso-border-left-alt: solid silver .5pt; mso-border-bottom-alt: solid silver .5pt; padding: 0cm 5.4pt 0cm 5.4pt; height: 1.0cm'>
+					<p class="MsoNoSpacing" style='layout-grid-mode: char'>
+						<i><span style='font-size: 12.0pt'><span
+								style='mso-spacerun: yes' th:text="${devis.designation}"> </span></span></i>
+					</p>
+				</td>
+				<td width="132"
+					style='width: 99.0pt; border-top: none; border-left: solid silver 1.0pt; border-bottom: solid silver 1.0pt; border-right: none; mso-border-top-alt: solid silver .5pt; mso-border-top-alt: solid silver .5pt; mso-border-left-alt: solid silver .5pt; mso-border-bottom-alt: solid silver .5pt; padding: 0cm 5.4pt 0cm 5.4pt; height: 1.0cm'>
+					<p class="MsoNoSpacing" align="right"
+						style='text-align: right; layout-grid-mode: char'>
+						<i><span style='font-size: 12.0pt'
+							th:text="${devis.prixMateriel}"></span></i>
+					</p>
+				</td>
+				<td width="108"
+					style='width: 81.0pt; border: solid silver 1.0pt; border-top: none; mso-border-top-alt: solid silver .5pt; mso-border-alt: solid silver .5pt; padding: 0cm 5.4pt 0cm 5.4pt; height: 1.0cm'>
+					<p class="MsoNoSpacing" align="right"
+						style='text-align: right; layout-grid-mode: char'>
+						<i><span style='font-size: 12.0pt'
+							th:text="${devis.prixMateriel}"></span></i>
+					</p>
+				</td>
+			</tr>
+			<tr style='height: 1.0cm'>
+				<td width="84"
+					style='width: 63.0pt; border-top: none; border-left: solid silver 1.0pt; border-bottom: solid silver 1.0pt; border-right: none; mso-border-top-alt: solid silver .5pt; mso-border-top-alt: solid silver .5pt; mso-border-left-alt: solid silver .5pt; mso-border-bottom-alt: solid silver .5pt; padding: 0cm 5.4pt 0cm 5.4pt; height: 1.0cm'>
+					<p class="MsoNoSpacing" align="center" style='text-align: center'>
+						<span style='font-size: 12.0pt' th:text="${devis.quantite}"></span>
+					</p>
+				</td>
+				<td width="324"
+					style='width: 243.0pt; border-top: none; border-left: solid silver 1.0pt; border-bottom: solid silver 1.0pt; border-right: none; mso-border-top-alt: solid silver .5pt; mso-border-top-alt: solid silver .5pt; mso-border-left-alt: solid silver .5pt; mso-border-bottom-alt: solid silver .5pt; padding: 0cm 5.4pt 0cm 5.4pt; height: 1.0cm'>
+					<p class="MsoNoSpacing" style='layout-grid-mode: char'>
+						<i><span style='font-size: 12.0pt'>Main Oeuvre pose</span></i>
+					</p>
+				</td>
+				<td width="132"
+					style='width: 99.0pt; border-top: none; border-left: solid silver 1.0pt; border-bottom: solid silver 1.0pt; border-right: none; mso-border-top-alt: solid silver .5pt; mso-border-top-alt: solid silver .5pt; mso-border-left-alt: solid silver .5pt; mso-border-bottom-alt: solid silver .5pt; padding: 0cm 5.4pt 0cm 5.4pt; height: 1.0cm'>
+					<p class="MsoNoSpacing" align="right"
+						style='text-align: right; layout-grid-mode: char'>
+						<i><span style='font-size: 12.0pt'
+							th:text="${devis.prixMainOeuvre}"></span></i>
+					</p>
+				</td>
+				<td width="108"
+					style='width: 81.0pt; border: solid silver 1.0pt; border-top: none; mso-border-top-alt: solid silver .5pt; mso-border-alt: solid silver .5pt; padding: 0cm 5.4pt 0cm 5.4pt; height: 1.0cm'>
+					<p class="MsoNoSpacing" align="right"
+						style='text-align: right; layout-grid-mode: char'>
+						<i><span style='font-size: 12.0pt'
+							th:text="${devis.prixMainOeuvre}"></span></i>
+					</p>
+				</td>
+			</tr>
+			<tr style='mso-yfti-lastrow: yes; height: 1.0cm'>
+				<td width="84"
+					style='width: 63.0pt; border-top: none; border-left: solid silver 1.0pt; border-bottom: solid silver 1.0pt; border-right: none; mso-border-top-alt: solid silver .5pt; mso-border-top-alt: solid silver .5pt; mso-border-left-alt: solid silver .5pt; mso-border-bottom-alt: solid silver .5pt; padding: 0cm 5.4pt 0cm 5.4pt; height: 1.0cm'>
+					<p class="MsoNoSpacing" align="center" style='text-align: center'>
+						<span style='font-size: 12.0pt'><o:p></o:p></span>
+					</p>
+				</td>
+				<td width="324"
+					style='width: 243.0pt; border-top: none; border-left: solid silver 1.0pt; border-bottom: solid silver 1.0pt; border-right: none; mso-border-top-alt: solid silver .5pt; mso-border-top-alt: solid silver .5pt; mso-border-left-alt: solid silver .5pt; mso-border-bottom-alt: solid silver .5pt; padding: 0cm 5.4pt 0cm 5.4pt; height: 1.0cm'>
+					<p class="MsoNoSpacing" style='layout-grid-mode: char'>
+						<i><span style='font-size: 12.0pt'><o:p></o:p></span></i>
+					</p>
+				</td>
+				<td width="132"
+					style='width: 99.0pt; border-top: none; border-left: solid silver 1.0pt; border-bottom: solid silver 1.0pt; border-right: none; mso-border-top-alt: solid silver .5pt; mso-border-top-alt: solid silver .5pt; mso-border-left-alt: solid silver .5pt; mso-border-bottom-alt: solid silver .5pt; padding: 0cm 5.4pt 0cm 5.4pt; height: 1.0cm'>
+					<p class="MsoNoSpacing" align="right"
+						style='text-align: right; layout-grid-mode: char'>
+						<i><span style='font-size: 12.0pt'><o:p></o:p></span></i>
+					</p>
+				</td>
+				<td width="108"
+					style='width: 81.0pt; border: solid silver 1.0pt; border-top: none; mso-border-top-alt: solid silver .5pt; mso-border-alt: solid silver .5pt; padding: 0cm 5.4pt 0cm 5.4pt; height: 1.0cm'>
+					<p class="MsoNoSpacing" align="right"
+						style='text-align: right; layout-grid-mode: char'>
+						<i><span style='font-size: 12.0pt'><o:p></o:p></span></i>
+					</p>
+				</td>
+			</tr>
+		</table>
+		<p class="MsoNoSpacing">
+			<span style='font-size: 5.0pt'><o:p></o:p></span>
+		</p>
+
+		<table class="MsoNormalTable" border="0" cellspacing="0"
+			cellpadding="0" width="0"
+			style='width: 207.0pt; margin-left: 284.4pt; border-collapse: collapse; mso-padding-alt: 0cm 5.4pt 0cm 5.4pt'>
+			<tr style='page-break-inside: avoid; height: 1.0cm'>
+				<td width="144"
+					style='width: 108.0pt; padding: 0cm 5.4pt 0cm 5.4pt; height: 1.0cm'>
+					<p class="MsoNoSpacing" style='layout-grid-mode: char'>
+						<span lang="EN-GB"
+							style='font-size: 12.0pt; mso-ansi-language: EN-GB'>Total
+							Hors <span class="SpellE">Taxe</span> <o:p></o:p>
+						</span>
+					</p>
+				</td>
+				<td width="132"
+					style='width: 99.0pt; border: solid silver 1.0pt; border-left: none; mso-border-top-alt: solid silver .5pt; mso-border-bottom-alt: solid silver .5pt; mso-border-right-alt: solid silver .5pt; padding: 0cm 5.4pt 0cm 5.4pt; height: 1.0cm'>
+					<p class="MsoNoSpacing" align="right"
+						style='text-align: right; layout-grid-mode: char'>
+						<i><span style='font-size: 12.0pt' th:text="${totalHt}"><span
+								style='mso-spacerun: yes'> </span>€<o:p></o:p></span></i>
+					</p>
+				</td>
+			</tr>
+			<tr style='page-break-inside: avoid; height: 1.0cm'>
+				<td width="144"
+					style='width: 108.0pt; padding: 0cm 5.4pt 0cm 5.4pt; height: 1.0cm'>
+					<p class="MsoNoSpacing" style='layout-grid-mode: char'>
+						<span style='font-size: 12.0pt'>TVA à <i>5.5%</i> <o:p></o:p></span>
+					</p>
+				</td>
+				<td width="132"
+					style='width: 99.0pt; border-top: none; border-left: none; border-bottom: solid silver 1.0pt; border-right: solid silver 1.0pt; mso-border-top-alt: solid silver .5pt; mso-border-top-alt: solid silver .5pt; mso-border-bottom-alt: solid silver .5pt; mso-border-right-alt: solid silver .5pt; padding: 0cm 5.4pt 0cm 5.4pt; height: 1.0cm'>
+					<p class="MsoNoSpacing" align="right"
+						style='text-align: right; layout-grid-mode: char'>
+						<span style='font-size: 12.0pt'
+							th:text="${#numbers.formatDecimal(tva,3,2)}"><span
+							style='mso-spacerun: yes'> </span><i>€<o:p></o:p></i></span>
+					</p>
+				</td>
+			</tr>
+			<tr
+				style='mso-yfti-lastrow: yes; page-break-inside: avoid; height: 1.0cm'>
+				<td width="144"
+					style='width: 108.0pt; padding: 0cm 5.4pt 0cm 5.4pt; height: 1.0cm'>
+					<p class="MsoNoSpacing" style='layout-grid-mode: char'>
+						<b style='mso-bidi-font-weight: normal'><span
+							style='font-size: 12.0pt'>Total TTC en euros</span></b>
+					</p>
+				</td>
+				<td width="132"
+					style='width: 99.0pt; border-top: none; border-left: none; border-bottom: solid silver 1.0pt; border-right: solid silver 1.0pt; mso-border-top-alt: solid silver .5pt; mso-border-top-alt: solid silver .5pt; mso-border-bottom-alt: solid silver .5pt; mso-border-right-alt: solid silver .5pt; padding: 0cm 5.4pt 0cm 5.4pt; height: 1.0cm'>
+					<p class="MsoNoSpacing" align="right"
+						style='text-align: right; layout-grid-mode: char'>
+						<b style='mso-bidi-font-weight: normal'><span
+							style='font-size: 12.0pt'><span style='mso-spacerun: yes'
+								th:text="${#numbers.formatDecimal(totalTva,3,2)}"> </span>€<o:p></o:p></span></b>
+					</p>
+				</td>
+			</tr>
+		</table>
+
+		<p class="MsoNoSpacing">
+			<span style='font-size: 5.0pt'><o:p></o:p></span>
+		</p>
+		<p class="MsoNoSpacing">
+			<span
+				style='mso-bidi-font-size: 10.0pt; font-family: "Arial", sans-serif'>Nous
+				restons à votre disposition pour toute information complémentaire.<o:p></o:p>
+			</span>
+		</p>
+
+		<p class="MsoNoSpacing">
+			<span
+				style='mso-bidi-font-size: 10.0pt; font-family: "Arial", sans-serif'>Cordialement,<o:p></o:p></span>
+		</p>
+
+
+		<span
+			style='mso-bidi-font-size: 7.0pt; font-family: "Arial", sans-serif'>Si
+			ce devis vous convient, veuillez-nous le retourner signé précédé de
+			la mention :<o:p></o:p>
+		</span> <span
+			style='font-size: 7.0pt; mso-bidi-font-size: 10.0pt; font-family: "Arial", sans-serif'>&quot;BON
+			POUR ACCORD ET EXECUTION DU DEVIS&quot;<o:p></o:p>
+		</span>
+
+		<p class="MsoNoSpacing">
+			<span style='font-size: 5.0pt'><o:p></o:p></span>
+		</p>
+		<span
+			style='mso-bidi-font-size: 7.0pt; font-family: "Arial", sans-serif'>Date
+			: <span style='mso-tab-count: 7'>                                                                       
+		</span>Signature : <o:p></o:p>
+		</span>
+		<p class="MsoNoSpacing">
+			<span style='font-size: 10.0pt'><o:p></o:p></span>
+		</p>
+			<p class="MsoNoSpacing">
+			<span style='font-size: 10.0pt'><o:p></o:p></span>
+		</p>
+		<span
+			style='mso-bidi-font-size: 7.0pt; font-family: "Arial", sans-serif; color: gray'>Validité
+			du devis : 3 mois <o:p></o:p>
+		</span> <span
+			style='mso-bidi-font-size: 7.0pt; font-family: "Arial", sans-serif; color: gray'>Conditions
+			de règlement : 40% à la commande, le solde à la livraison<o:p></o:p>
+		</span> 
+	</div>
+	</page>
+</body>
+
+</html>

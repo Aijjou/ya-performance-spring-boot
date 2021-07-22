@@ -1,6 +1,5 @@
 package com.ya.performance.entities;
 
-
 import java.util.List;
 
 import javax.persistence.CascadeType;
@@ -14,73 +13,95 @@ import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 /**
- * Prospect 
+ * Prospect
  */
 
 @Entity
 @Table(name = "Prospect", catalog = "yaperf")
 public class Prospect implements java.io.Serializable {
 
-
 	private static final long serialVersionUID = 1L;
-	
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Column(name= "pros_id")
+	@Column(name = "pros_id")
 	private Integer prosId;
-	
+
 	@Column(name = "pros_civilite")
 	private String prosCivilite;
-	
+
 	@Column(name = "pros_nom")
 	private String prosNom;
-	
+
 	@Column(name = "pros_prenom")
 	private String prosPrenom;
-	
+
 	@Column(name = "pros_mail")
 	private String prosMail;
-	
+
 	@Column(name = "pros_phone")
 	private String prosPhone;
-	
+
 	@Column(name = "pros_sit_familial")
 	private String prosSitFamilial;
-	
+
 	@Column(name = "pros_pers_charge")
-	private Integer prosPersCharge;
-	
+	private String prosPersCharge;
+
 	@Column(name = "pros_revenu_ref")
 	private String prosRevenuRef;
-	
+
 	@Column(name = "pros_lieu_hab")
 	private String prosLieuHab;
-	
-	@Column(name = "pros_contact",columnDefinition = "TINYINT(1)")
+
+	@Column(name = "pros_contact", columnDefinition = "TINYINT(1)")
 	private Boolean prosContact;
-	
-	@Column(name = "pros_promo",columnDefinition = "TINYINT(1)")
+
+	@Column(name = "pros_promo", columnDefinition = "TINYINT(1)")
 	private Boolean prosPromo;
-	
+
 	@Column(name = "pros_condition", columnDefinition = "TINYINT(1)")
 	private Boolean prosCondition;
-	
+
 	@Column(name = "pros_ville")
 	private String prosVille;
-	
+
 	@Column(name = "pros_code")
 	private String prosCode;
-	
+
 	@OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL, mappedBy = "prospect")
 	private List<Simulation> simulations;
+	
+	@OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL, mappedBy = "prospect")
+	private List<Devis> devis;
 
 	public Prospect() {
 	}
 
 	public Prospect(String prosCivilite, String prosNom, String prosPrenom, String prosMail, String prosPhone,
-			String prosSitFamilial, Integer prosPersCharge, String prosRevenuRef, String prosLieuHab, Boolean prosContact,
-			Boolean prosPromo, Boolean prosCondition, String prosVille, String prosCode) {
+			String prosSitFamilial, String prosPersCharge, String prosRevenuRef, String prosLieuHab,
+			Boolean prosContact, Boolean prosPromo, Boolean prosCondition, String prosVille, String prosCode) {
+		this.prosCivilite = prosCivilite;
+		this.prosNom = prosNom;
+		this.prosPrenom = prosPrenom;
+		this.prosMail = prosMail;
+		this.prosPhone = prosPhone;
+		this.prosSitFamilial = prosSitFamilial;
+		this.prosPersCharge = prosPersCharge;
+		this.prosRevenuRef = prosRevenuRef;
+		this.prosLieuHab = prosLieuHab;
+		this.prosContact = prosContact;
+		this.prosPromo = prosPromo;
+		this.prosCondition = prosCondition;
+		this.prosVille = prosVille;
+		this.prosCode = prosCode;
+
+	}
+
+	public Prospect(Integer prosInteger, String prosCivilite, String prosNom, String prosPrenom, String prosMail,
+			String prosPhone, String prosSitFamilial, String prosPersCharge, String prosRevenuRef, String prosLieuHab,
+			Boolean prosContact, Boolean prosPromo, Boolean prosCondition, String prosVille, String prosCode) {
+		this.prosId = prosInteger;
 		this.prosCivilite = prosCivilite;
 		this.prosNom = prosNom;
 		this.prosPrenom = prosPrenom;
@@ -154,11 +175,11 @@ public class Prospect implements java.io.Serializable {
 		this.prosSitFamilial = prosSitFamilial;
 	}
 
-	public Integer getProsPersCharge() {
+	public String getProsPersCharge() {
 		return this.prosPersCharge;
 	}
 
-	public void setProsPersCharge(Integer prosPersCharge) {
+	public void setProsPersCharge(String prosPersCharge) {
 		this.prosPersCharge = prosPersCharge;
 	}
 
@@ -217,7 +238,7 @@ public class Prospect implements java.io.Serializable {
 	public void setProsCode(String prosCode) {
 		this.prosCode = prosCode;
 	}
-	
+
 	public List<Simulation> getSimulations() {
 		return this.simulations;
 	}
@@ -226,5 +247,14 @@ public class Prospect implements java.io.Serializable {
 		this.simulations = simulations;
 	}
 
+	@Override
+	public String toString() {
+		return "Prospect [prosId=" + prosId + ", prosCivilite=" + prosCivilite + ", prosNom=" + prosNom
+				+ ", prosPrenom=" + prosPrenom + ", prosMail=" + prosMail + ", prosPhone=" + prosPhone
+				+ ", prosSitFamilial=" + prosSitFamilial + ", prosPersCharge=" + prosPersCharge + ", prosRevenuRef="
+				+ prosRevenuRef + ", prosLieuHab=" + prosLieuHab + ", prosContact=" + prosContact + ", prosPromo="
+				+ prosPromo + ", prosCondition=" + prosCondition + ", prosVille=" + prosVille + ", prosCode=" + prosCode
+				+ ", simulations=" + simulations + "]";
+	}
 
 }

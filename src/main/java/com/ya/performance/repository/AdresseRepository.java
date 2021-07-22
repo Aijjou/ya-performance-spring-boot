@@ -13,5 +13,5 @@ import com.ya.performance.entities.Adresse;
  */
 
 @Repository
-public interface AdresseRepository extends CrudRepository<Adresse, Long> {	
+public interface AdresseRepository extends CrudRepository<Adresse, Integer> {	
 }

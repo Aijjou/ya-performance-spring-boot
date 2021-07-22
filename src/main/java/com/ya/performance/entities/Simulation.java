@@ -9,7 +9,9 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
+import javax.persistence.Transient;
 
 /**
  * Simulation 
@@ -26,7 +28,7 @@ public class Simulation implements java.io.Serializable {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name= "sim_id")
-	private SimulationId id;
+	private Integer id;
 	
 
 	@ManyToOne(fetch = FetchType.LAZY)
@@ -70,19 +72,27 @@ public class Simulation implements java.io.Serializable {
 	
 	@Column(name = "sim_benef_travaux")
 	private String simBenefTravaux;
+	
+	@Transient
+	@OneToOne(mappedBy= "simulation")
+	private Devis devis;
 
 	public Simulation() {
 	}
 
-	public Simulation(SimulationId id, Adresse adresse, Prospect prospect) {
+	public Simulation(Integer id, Adresse adresse, Prospect prospect) {
 		this.id = id;
 		this.adresse = adresse;
 		this.prospect = prospect;
 	}
 
-	public Simulation(SimulationId id, Adresse adresse, Prospect prospect, String simLogement, String simAnneeConst,
-			Integer simSurface, Integer simSurfIso, String simEquipeChauffage, String simEnergie, Integer simConso,
-			String simMatSouhaite, String simMontantMat, String simMontantPose, String simBenefTravaux) {
+	public Simulation(Integer id, Adresse adresse, Prospect prospect, 
+			String simLogement, String simAnneeConst,
+			Integer simSurface, Integer simSurfIso, 
+			String simEquipeChauffage, String simEnergie,
+			Integer simConso,
+			String simMatSouhaite, String simMontantMat, 
+			String simMontantPose, String simBenefTravaux) {
 		this.id = id;
 		this.adresse = adresse;
 		this.prospect = prospect;
@@ -99,15 +109,15 @@ public class Simulation implements java.io.Serializable {
 		this.simBenefTravaux = simBenefTravaux;
 	}
 
-	@ManyToOne
-	public SimulationId getId() {
-		return this.id;
+	
+	
+	public Integer getId() {
+		return id;
 	}
 
-	public void setId(SimulationId id) {
+	public void setId(Integer id) {
 		this.id = id;
 	}
-
 
 	public Adresse getAdresse() {
 		return this.adresse;
@@ -212,5 +222,16 @@ public class Simulation implements java.io.Serializable {
 	public void setSimBenefTravaux(String simBenefTravaux) {
 		this.simBenefTravaux = simBenefTravaux;
 	}
+
+	@Override
+	public String toString() {
+		return "Simulation [id=" + id + ", adresse=" + adresse + ", prospect=" + prospect + ", simLogement="
+				+ simLogement + ", simAnneeConst=" + simAnneeConst + ", simSurface=" + simSurface + ", simSurfIso="
+				+ simSurfIso + ", simEquipeChauffage=" + simEquipeChauffage + ", simEnergie=" + simEnergie
+				+ ", simConso=" + simConso + ", simMatSouhaite=" + simMatSouhaite + ", simMontantMat=" + simMontantMat
+				+ ", simMontantPose=" + simMontantPose + ", simBenefTravaux=" + simBenefTravaux + "]";
+	}
+	
+	
 
 }

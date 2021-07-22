@@ -31,9 +31,7 @@ public class Adresse implements java.io.Serializable {
 	
 	@Column(name = "adr_num")
 	private String adrNum;
-	
-	@Column(name = "adr_rue")
-	private String adrRue;
+
 	
 	@Column(name = "adr_voie")
 	private String adrVoie;
@@ -50,9 +48,17 @@ public class Adresse implements java.io.Serializable {
 	public Adresse() {
 	}
 
-	public Adresse(String adrNum, String adrRue, String adrVoie, String adrVille, String adrCp, List<Simulation> simulations) {
+	public Adresse(String adrNum, String adrVoie, String adrVille, String adrCp, List<Simulation> simulations) {
 		this.adrNum = adrNum;
-		this.adrRue = adrRue;
+		this.adrVoie = adrVoie;
+		this.adrVille = adrVille;
+		this.adrCp = adrCp;
+		this.simulations = simulations;
+	}
+	
+	public Adresse(Integer adrId, String adrNum, String adrVoie, String adrVille, String adrCp, List<Simulation> simulations) {
+		this.adrId = adrId;
+		this.adrNum = adrNum;
 		this.adrVoie = adrVoie;
 		this.adrVille = adrVille;
 		this.adrCp = adrCp;
@@ -75,13 +81,6 @@ public class Adresse implements java.io.Serializable {
 		this.adrNum = adrNum;
 	}
 
-	public String getAdrRue() {
-		return this.adrRue;
-	}
-
-	public void setAdrRue(String adrRue) {
-		this.adrRue = adrRue;
-	}
 
 	public String getAdrVoie() {
 		return this.adrVoie;
@@ -115,5 +114,15 @@ public class Adresse implements java.io.Serializable {
 	public void setSimulations(List<Simulation> simulations) {
 		this.simulations = simulations;
 	}
+	
+	
 
+	@Override
+	public String toString() {
+		return "Adresse [adrId=" + adrId + ", adrNum=" + adrNum + ", adrVoie=" + adrVoie
+				+ ", adrVille=" + adrVille + ", adrCp=" + adrCp + "]";
+	}
+
+	
+	
 }

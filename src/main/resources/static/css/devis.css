@@ -1,0 +1,183 @@
+body {
+	background: rgb(204, 204, 204);
+}
+
+page {
+	background: white;
+	display: block;
+	margin: 0 auto;
+	margin-bottom: 0.5cm;
+	box-shadow: 0 0 0.5cm rgba(0, 0, 0, 0.5);
+}
+
+page[size="A4"] {
+	width: 21cm;
+	height: 29.7cm;
+}
+
+page[size="A4"][layout="portrait"] {
+	width: 21cm;
+	height: 29.7cm;
+}
+
+@media print {
+	body, page {
+		margin: 0;
+		box-shadow: 0;
+	}
+}
+
+<!-- /* Font Definitions */
+@font-face {
+	font-family: "Cambria Math";
+	panose-1: 2 4 5 3 5 4 6 3 2 4;
+	mso-font-charset: 1;
+	mso-generic-font-family: roman;
+	mso-font-pitch: variable;
+	mso-font-signature: 0 0 0 0 0 0;
+}
+
+@font-face {
+	font-family: Calibri;
+	panose-1: 2 15 5 2 2 2 4 3 2 4;
+	mso-font-charset: 0;
+	mso-generic-font-family: swiss;
+	mso-font-pitch: variable;
+	mso-font-signature: -469750017 -1073732485 9 0 511 0;
+}
+/* Style Definitions */
+p.MsoNormal, li.MsoNormal, div.MsoNormal {
+	mso-style-unhide: no;
+	mso-style-qformat: yes;
+	mso-style-parent: "";
+	margin: 0cm;
+	margin-bottom: .0001pt;
+	text-align: justify;
+	mso-pagination: widow-orphan;
+	font-size: 11.0pt;
+	font-family: "Arial", sans-serif;
+	mso-fareast-font-family: Calibri;
+	mso-fareast-language: EN-US;
+}
+
+h1 {
+	mso-style-unhide: no;
+	mso-style-qformat: yes;
+	mso-style-next: Normal;
+	margin: 0cm;
+	margin-bottom: .0001pt;
+	text-align: justify;
+	mso-pagination: widow-orphan;
+	page-break-after: avoid;
+	mso-outline-level: 1;
+	font-size: 16.0pt;
+	mso-bidi-font-size: 11.0pt;
+	font-family: "Arial", sans-serif;
+	color: navy;
+	mso-font-kerning: 0pt;
+	mso-fareast-language: EN-US;
+}
+
+h2 {
+	mso-style-unhide: no;
+	mso-style-qformat: yes;
+	mso-style-next: Normal;
+	margin: 0cm;
+	margin-bottom: .0001pt;
+	text-align: justify;
+	mso-pagination: widow-orphan;
+	page-break-after: avoid;
+	mso-outline-level: 2;
+	font-size: 14.0pt;
+	mso-bidi-font-size: 11.0pt;
+	font-family: "Arial", sans-serif;
+	mso-fareast-language: EN-US;
+}
+
+p.MsoHeader, li.MsoHeader, div.MsoHeader {
+	mso-style-noshow: yes;
+	mso-style-unhide: no;
+	margin: 0cm;
+	margin-bottom: .0001pt;
+	text-align: justify;
+	mso-pagination: widow-orphan;
+	tab-stops: center 8.0cm right 16.0cm;
+	font-size: 11.0pt;
+	font-family: "Arial", sans-serif;
+	mso-fareast-font-family: Calibri;
+	mso-fareast-language: EN-US;
+}
+
+p.MsoFooter, li.MsoFooter, div.MsoFooter {
+	mso-style-noshow: yes;
+	mso-style-unhide: no;
+	margin: 0cm;
+	margin-bottom: .0001pt;
+	text-align: justify;
+	mso-pagination: widow-orphan;
+	tab-stops: center 8.0cm right 16.0cm;
+	font-size: 11.0pt;
+	font-family: "Arial", sans-serif;
+	mso-fareast-font-family: Calibri;
+	mso-fareast-language: EN-US;
+}
+
+p.MsoNoSpacing, li.MsoNoSpacing, div.MsoNoSpacing {
+	mso-style-unhide: no;
+	mso-style-qformat: yes;
+	mso-style-parent: "";
+	margin: 0cm;
+	margin-bottom: .0001pt;
+	mso-pagination: widow-orphan;
+	mso-hyphenate: none;
+	font-size: 11.0pt;
+	font-family: "Calibri", sans-serif;
+	mso-fareast-font-family: Calibri;
+	mso-fareast-language: AR-SA;
+}
+
+span.SpellE {
+	mso-style-name: "";
+	mso-spl-e: yes;
+}
+
+.MsoChpDefault {
+	mso-style-type: export-only;
+	mso-default-props: yes;
+	mso-ascii-font-family: Arial;
+	mso-fareast-font-family: Calibri;
+	mso-hansi-font-family: Arial;
+	mso-bidi-font-family: Arial;
+}
+/* Page Definitions */
+@page {
+	mso-footnote-separator: url("devis_yaperformance_fichiers/header.htm")
+		fs;
+	mso-footnote-continuation-separator:
+		url("devis_yaperformance_fichiers/header.htm") fcs;
+	mso-endnote-separator: url("devis_yaperformance_fichiers/header.htm") es;
+	mso-endnote-continuation-separator:
+		url("devis_yaperformance_fichiers/header.htm") ecs;
+}
+
+@page WordSection1 {
+	size: 595.3pt 841.9pt;
+	margin: 2.0cm 2.0cm 2.0cm 2.0cm;
+	mso-header-margin: 36.0pt;
+	mso-footer-margin: 36.0pt;
+	mso-footer: url("devis_yaperformance_fichiers/header.htm") f1;
+	mso-paper-source: 0;
+}
+
+div.WordSection1 {
+	page: WordSection1;
+}
+
+
+.infos{
+	
+	display : flex;
+	flex-direction  : row;
+	justify-content : center;
+	
+}
