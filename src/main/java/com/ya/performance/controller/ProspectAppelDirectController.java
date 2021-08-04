@@ -9,8 +9,22 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Properties;
 
+import javax.activation.DataHandler;
+import javax.activation.DataSource;
+import javax.activation.FileDataSource;
+import javax.mail.BodyPart;
+import javax.mail.Message;
 import javax.mail.MessagingException;
+import javax.mail.Multipart;
+import javax.mail.PasswordAuthentication;
+import javax.mail.Session;
+import javax.mail.Transport;
+import javax.mail.internet.InternetAddress;
+import javax.mail.internet.MimeBodyPart;
+import javax.mail.internet.MimeMessage;
+import javax.mail.internet.MimeMultipart;
 
 import org.apache.commons.lang.RandomStringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -60,12 +74,12 @@ public class ProspectAppelDirectController {
 
 	@Autowired
 	MailService mailService;
-	
+
 	@Autowired
 	DevisService devisService;
-	
-	 @Autowired
-	    private org.thymeleaf.spring5.SpringTemplateEngine templateEngine;
+
+	@Autowired
+	private org.thymeleaf.spring5.SpringTemplateEngine templateEngine;
 
 	@RequestMapping(value = "/prospectappel", method = RequestMethod.POST)
 	@ResponseBody
@@ -94,8 +108,11 @@ public class ProspectAppelDirectController {
 	}
 
 	@RequestMapping(value = "/devis", method = RequestMethod.POST)
-	ResponseEntity<?> createDevis(@RequestBody DevisDto devisDto, Model model) throws FileNotFoundException, IOException, DocumentException, com.lowagie.text.DocumentException {
+	ResponseEntity<?> createDevis(@RequestBody DevisDto devisDto, Model model)
+			throws FileNotFoundException, IOException, DocumentException, com.lowagie.text.DocumentException {
 		System.err.println(devisDto);
+		String target = "target/devis.pdf";
+		String mailDestinataire = prospectService.getProspectById(devisDto.getIdProspect()).getProsMail();
 
 		Devis devis = new Devis();
 
@@ -114,50 +131,110 @@ public class ProspectAppelDirectController {
 		devis.setTvaMateriel(5.5);
 		devis.setSimulation(simulationService.findById(devisDto.getIdSimulation()));
 		devis.setDesignation(devisDto.getDesignation());
+		
+		Integer totalHt = devis.getPrixMainOeuvre() + devis.getPrixMateriel();
+		Double totalTva = totalHt * (1 + (devis.getTvaMainOeuvre()/100));
+		Double tva = totalTva - totalHt;
+		
+		
 		Devis devisCree = devisService.createDevis(devis);
-		
-//		ClassLoaderTemplateResolver templateResolver = new ClassLoaderTemplateResolver();
-//		templateResolver.setSuffix(".html");
-//		templateResolver.setTemplateMode("HTML");
-//		 
-//		TemplateEngine templateEngine = new TemplateEngine();
-//		templateEngine.setTemplateResolver(templateResolver);
-		
+
 		Map<String, Object> maps = new HashMap<>();
 		maps.put("devis", devis);
-		
-		Context context = new Context();
-        context.setVariables(maps);
-        String html = templateEngine.process("devis/test", context);
-        
-//        Document document = new Document(PageSize.LETTER);
-//        PdfWriter writer = PdfWriter.getInstance(document, new FileOutputStream("target/html.pdf"));
-//        document.open();
-//        XMLWorkerHelper.getInstance().parseXHtml(writer, document,
-//          new FileInputStream(html));
-//        document.close();
-//        
-//        
-//		
-//		
-//
-//        return ResponseEntity.ok().contentType(null).body(null);
-        
+		maps.put("tva", tva);
+		maps.put("totalHt", totalHt);
+		maps.put("totalTva", totalTva);
 
- 
-      OutputStream outputStream = new FileOutputStream("target/devis.pdf");
-      ITextRenderer renderer = new ITextRenderer();
-      renderer.setDocumentFromString(html);
-      renderer.layout();
-      renderer.createPDF(outputStream);
-   
-      outputStream.close();
-     
-        return ResponseEntity.ok()
-                .contentType(null)
-                .body(null);
+		Context context = new Context();
+		context.setVariables(maps);
+		String html = templateEngine.process("devis/test", context);
+
+		OutputStream outputStream = new FileOutputStream(target);
+		ITextRenderer renderer = new ITextRenderer();
+		renderer.setDocumentFromString(html);
+		renderer.layout();
+		renderer.createPDF(outputStream);
+
+		outputStream.close();
+
+		SendAttachmentInEmail(target,mailDestinataire);
+		
+		
+		return ResponseEntity.ok().contentType(null).body(null);
 
 	}
 
+	public void SendAttachmentInEmail(String target, String mail) {
+
+		// Recipient's email ID needs to be mentioned.
+		String to = mail;
+
+		// Sender's email ID needs to be mentioned
+		String from = "ya.performance59@gmail.com";
+
+		final String username = "ya.performance59@gmail.com";// change accordingly
+		final String password = "@yaperformance59";// change accordingly
+
+		// Assuming you are sending email through relay.jangosmtp.net
+		String host = "smtp.gmail.com";
+
+		Properties props = new Properties();
+		props.put("mail.smtp.auth", "true");
+		props.put("mail.smtp.starttls.enable", "true");
+		props.put("mail.smtp.host", host);
+		props.put("mail.smtp.port", "587");
+
+		// Get the Session object.
+		Session session = Session.getInstance(props, new javax.mail.Authenticator() {
+			protected PasswordAuthentication getPasswordAuthentication() {
+				return new PasswordAuthentication(username, password);
+			}
+		});
+
+		try {
+			// Create a default MimeMessage object.
+			Message message = new MimeMessage(session);
+
+			// Set From: header field of the header.
+			message.setFrom(new InternetAddress(from));
+
+			// Set To: header field of the header.
+			message.setRecipients(Message.RecipientType.TO, InternetAddress.parse(to));
+
+			// Set Subject: header field
+			message.setSubject("Testing Subject");
+
+			// Create the message part
+			BodyPart messageBodyPart = new MimeBodyPart();
+
+			// Now set the actual message
+			messageBodyPart.setText("This is message body");
+
+			// Create a multipar message
+			Multipart multipart = new MimeMultipart();
+
+			// Set text message part
+			multipart.addBodyPart(messageBodyPart);
+
+			// Part two is attachment
+			messageBodyPart = new MimeBodyPart();
+			String filename = target;
+			DataSource source = new FileDataSource(filename);
+			messageBodyPart.setDataHandler(new DataHandler(source));
+			messageBodyPart.setFileName(filename);
+			multipart.addBodyPart(messageBodyPart);
+
+			// Send the complete message parts
+			message.setContent(multipart);
+
+			// Send message
+			Transport.send(message);
+
+			System.out.println("Sent message successfully....");
+
+		} catch (MessagingException e) {
+			throw new RuntimeException(e);
+		}
+	}
 
 }

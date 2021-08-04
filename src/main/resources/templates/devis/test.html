@@ -39,9 +39,8 @@
 		<p>
 			<span
 				style='mso-ignore: vglayout; position: relative; z-index: 251656704'><span
-				style='position: absolute; left: 348px; top: 20px; width: 304px; height: 64px; border:solid 3px; padding:10px; font-size:25px;' class="text-center">DEVIS</span></span>
-
-			<b><span
+				style='position: absolute; left: 348px; top: 20px; width: 304px; height: 64px; border: solid 3px; padding: 10px; font-size: 25px;'
+				class="text-center">DEVIS</span></span> <b><span
 				style='font-size: 14.0pt; mso-bidi-font-size: 12.0pt; font-family: "Arial", sans-serif; mso-fareast-language: FR; mso-no-proof: yes'
 				th:text="${devis.societe.nom}"> </span></b>
 		</p>
@@ -64,10 +63,11 @@
 				th:text="${devis.societe.fax}"></span> <o:p></o:p> </span>
 		</div>
 
-		<div>
-			<span style='font-size: 12.0pt; font-family: "Arial", sans-serif'><span
-				th:text="${devis.societe.mail}"></span> <o:p></o:p></span>
-		</div>
+		<span style='font-size: 12.0pt; font-family: "Arial", sans-serif'><span
+			th:text="${devis.societe.mail}"></span> <o:p></o:p></span> <span
+			style='font-size: 10.0pt; font-family: "Arial", sans-serif'>Siret
+			: <span th:text="${devis.societe.siret}"></span> <o:p></o:p>
+		</span>
 
 		<p class="MsoNoSpacing">
 			<span style='font-size: 5.0pt; font-family: "Arial", sans-serif'><o:p></o:p></span>
@@ -75,7 +75,8 @@
 
 		<span class="row infos">
 
-			<div class="card p-2 bg-info w-25" style='padding-left: 20px; padding-right: 20px; padding-top: 10px; padding-bottom: 10px;'>
+			<div class="card p-2 bg-info w-25"
+				style='padding-left: 20px; padding-right: 20px; padding-top: 10px; padding-bottom: 10px;'>
 				<div class="row">
 					<span class="font-weight-bold px-0 ">Reference :</span> <span
 						class="px-0 text-center text-white" th:text="${devis.reference}"></span>
@@ -92,7 +93,7 @@
 				</div>
 			</div>
 			<div class="card p-2 bg-secondary w-50"
-				style='position: absolute; left: 350px; top: 175px; padding:10px; height: 100px;'
+				style='position: absolute; left: 350px; top: 175px; padding: 10px; height: 100px;'
 				align="center">
 				<div class="row">
 					<span class="font-weight-bold px-0 text-white"
@@ -351,7 +352,7 @@
 		<p class="MsoNoSpacing">
 			<span style='font-size: 10.0pt'><o:p></o:p></span>
 		</p>
-			<p class="MsoNoSpacing">
+		<p class="MsoNoSpacing">
 			<span style='font-size: 10.0pt'><o:p></o:p></span>
 		</p>
 		<span
@@ -360,7 +361,7 @@
 		</span> <span
 			style='mso-bidi-font-size: 7.0pt; font-family: "Arial", sans-serif; color: gray'>Conditions
 			de règlement : 40% à la commande, le solde à la livraison<o:p></o:p>
-		</span> 
+		</span>
 	</div>
 	</page>
 </body>
